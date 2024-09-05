@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>채팅방 목록</title>
+  <!-- jquery CDN-->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+  <script src="/js/name.js"></script>
+</head>
+<body>
+<div>
+  <h1>채팅방 목록</h1>
+  <form action="/chatroom/search" method="get">
+    <input type="text" name="keyword" placeholder="검색어를 입력하세요" required>
+    <button type="submit">검색</button>
+  </form>
+  <ul>
+    <li th:each="chatRoom : ${chatRooms}">
+      <a th:href="@{/chatroom/{id}(id=${chatRoom.id})}" th:text="${chatRoom.title}"></a>
+      <span th:text="${chatRoom.creator}"></span>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

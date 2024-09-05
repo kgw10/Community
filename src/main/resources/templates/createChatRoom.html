@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>채팅방 생성</title>
+  <!-- jquery CDN-->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+  <script src="/js/name.js"></script>
+</head>
+<body>
+<div>
+  <h1>채팅방 생성</h1>
+  <form action="/chatroom/create" method="post">
+    <label for="title">채팅방 제목:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">생성</button>
+  </form>
+</div>
+</body>
+</html>
