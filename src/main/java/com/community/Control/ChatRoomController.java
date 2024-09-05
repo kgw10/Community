@@ -16,25 +16,16 @@ public class ChatRoomController {
 
     private final ChatRoomService chatRoomService;
 
-    @GetMapping
-    public String listChatrooms(Model model, HttpSession session) {
+    @GetMapping("/manage")
+    public String manageChatRooms(Model model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         if (userName == null) {
             // 이름이 없으면 이름 등록 페이지로 리다이렉트
-            return "redirect:/nameRegistration";
+            return "redirect:/chatroom/nameRegistration";
         }
         model.addAttribute("chatRooms", chatRoomService.getAllChatRooms());
-        return "chatroom/chatList";
-    }
-
-    @GetMapping("/create")
-    public String createChatRoomForm(Model model, HttpSession session) {
-        String userName = (String) session.getAttribute("userName");
-        if (userName == null) {
-            return "redirect:/nameRegistration";
-        }
         model.addAttribute("chatRoomDto", new ChatRoomDto());
-        return "chatroom/createChatroom";
+        return "chatroom/manage"; // 통합된 페이지 이름
     }
 
     @PostMapping("/create")
@@ -44,24 +35,16 @@ public class ChatRoomController {
             chatRoomDto.setCreator(userName);
             chatRoomService.createChatRoom(chatRoomDto);
         }
-        return "redirect:/chatroom";
+        return "redirect:/chatroom/manage"; // 통합 페이지로 리다이렉트
     }
-
-    @PostMapping("/saveName")
-    @ResponseBody
-    public void saveName(@RequestParam String name, HttpSession session) {
-        session.setAttribute("userName", name);
-    }
-
 
     @GetMapping("/search")
     public String searchChatRooms(@RequestParam("keyword") String keyword, Model model, HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         if (userName == null) {
-            return "redirect:/nameRegistration";
+            return "redirect:/chatroom/nameRegistration";
         }
         model.addAttribute("chatRooms", chatRoomService.searchChatRooms(keyword));
-        return "chatroom/chatList";
+        return "chatroom/manage"; // 통합 페이지로 리다이렉트
     }
-
 }

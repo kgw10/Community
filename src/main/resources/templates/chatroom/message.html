@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>채팅방</title>
+</head>
+<body>
+<div>
+  <h1>채팅방</h1>
+
+  <div>
+    <ul>
+      <li th:each="message : ${messages}">
+        <strong th:text="${message.sender}"></strong>: <span th:text="${message.message}"></span>
+        <em th:text="${message.timestamp}"></em>
+      </li>
+    </ul>
+  </div>
+
+  <form action="/chatroom/{chatRoomId}/message" method="post"> <!-- 경로 수정 -->
+    <input type="text" name="sender" placeholder="이름" required>
+    <input type="text" name="message" placeholder="메시지" required>
+    <button type="submit">보내기</button>
+  </form>
+</div>
+</body>
+</html>

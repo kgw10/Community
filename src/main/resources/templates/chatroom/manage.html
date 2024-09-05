@@ -2,25 +2,41 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>채팅방 목록</title>
-  <!-- jquery CDN-->
+  <title>채팅방 관리</title>
+  <!-- jquery CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
   <script src="/js/name.js"></script>
 </head>
 <body>
 <div>
-  <h1>채팅방 목록</h1>
+  <h1>채팅방 관리</h1>
+
+  <!-- 검색 기능 -->
   <form action="/chatroom/search" method="get">
     <input type="text" name="keyword" placeholder="검색어를 입력하세요" required>
     <button type="submit">검색</button>
   </form>
+
+  <!-- 채팅방 목록 -->
+  <h2>채팅방 목록</h2>
   <ul>
     <li th:each="chatRoom : ${chatRooms}">
       <a th:href="@{/chatroom/{id}(id=${chatRoom.id})}" th:text="${chatRoom.title}"></a>
       <span th:text="${chatRoom.creator}"></span>
     </li>
   </ul>
+
+  <!-- 채팅방 생성 폼 -->
+  <h2>채팅방 생성</h2>
+  <form action="/chatroom/create" method="post">
+    <label for="title">채팅방 제목:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" name="password" minlength="4" required>
+
+    <button type="submit">생성</button>
+  </form>
 </div>
 </body>
 </html>
