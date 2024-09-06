@@ -28,4 +28,12 @@ public class ChatMessageController {
         model.addAttribute("messages", messages);
         return "chatroom/messages";
     }
+
+    @GetMapping("/{chatRoomId}")
+    public String chatRoom(@PathVariable Long chatRoomId, Model model) {
+        List<ChatMessageDto> messages = chatMessageService.getMessages(chatRoomId);
+        model.addAttribute("messages", messages);
+        model.addAttribute("chatRoomId", chatRoomId);
+        return "chatroom/chatRoom"; // 채팅방 상세 페이지 템플릿
+    }
 }

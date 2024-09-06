@@ -16,13 +16,13 @@ public class ChatRoomService {
     private final ChatRoomRepository chatRoomRepository;
 
     // 채팅방 생성
-    public void createChatRoom(ChatRoomDto chatRoomDto) {
+    public ChatRoom createChatRoom(ChatRoomDto chatRoomDto) {
         ChatRoom chatRoom = new ChatRoom();
         chatRoom.setTitle(chatRoomDto.getTitle());
         chatRoom.setCreator(chatRoomDto.getCreator());
         chatRoom.setPassword(chatRoomDto.getPassword());
 
-        chatRoomRepository.save(chatRoom);
+        return chatRoomRepository.save(chatRoom);
     }
 
     // 채팅방 목록 가져오기
