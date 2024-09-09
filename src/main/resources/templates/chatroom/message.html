@@ -11,7 +11,7 @@
 <body>
 <div>
   <h1>채팅방</h1>
-
+  <button id="goHomeButton" class="home-button">홈으로 가기</button>
   <div>
     <ul>
       <li th:each="message : ${messages}">
@@ -29,3 +29,11 @@
 </div>
 </body>
 </html>
+
+<script>
+
+  document.getElementById('goHomeButton').addEventListener('click', function() {
+    window.location.href = '/chatroom/manage';
+  });
+
+</script>

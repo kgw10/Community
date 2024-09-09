@@ -83,4 +83,6 @@ public class ChatRoomController {
         model.addAttribute("chatRooms", chatRoomService.searchChatRooms(keyword));
         return "chatroom/manage"; // 검색 후 통합 페이지로 리다이렉트
     }
+
+
 }
