@@ -46,4 +46,12 @@ public class ChatRoomService {
             return dto;
         }).collect(Collectors.toList());
     }
+
+    public void createChatRoom(String title, String password) {
+
+        ChatRoom chatRoom = new ChatRoom();
+        chatRoom.setTitle(title);
+        chatRoom.setPassword(password);
+        chatRoomRepository.save(chatRoom);
+    }
 }

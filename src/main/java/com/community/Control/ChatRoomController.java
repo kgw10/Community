@@ -50,6 +50,12 @@ public class ChatRoomController {
         return "chatroom/manage"; // 통합된 페이지 이름
     }
 
+    // 채팅방 생성 페이지
+    @GetMapping("/create")
+    public String createChatroomForm() {
+        return "chatroom/createChatroom"; // 채팅방 생성 페이지
+    }
+
     // 채팅방 생성
     @PostMapping("/create")
     public String createChatRoom(@ModelAttribute ChatRoomDto chatRoomDto, HttpSession session) {
