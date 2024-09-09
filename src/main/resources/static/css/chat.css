@@ -1,0 +1,122 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 헤더 스타일 */
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* 폼 스타일 */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input, form button {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* 채팅 메시지 리스트 스타일 */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul li strong {
+    color: #007bff;
+}
+
+/* 채팅방 목록 스타일 */
+#chatroom-list {
+    margin: 20px auto;
+    padding: 0;
+    max-width: 600px;
+}
+
+#chatroom-list li {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#chatroom-list li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+#chatroom-list li a:hover {
+    text-decoration: underline;
+}
+
+/* 검색 창 스타일 */
+#search-form {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+#search-query {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#search-form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#search-form button:hover {
+    background-color: #0056b3;
+}
