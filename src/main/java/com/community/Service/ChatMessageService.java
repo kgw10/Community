@@ -20,12 +20,11 @@ public class ChatMessageService {
     private final ChatRoomRepository chatRoomRepository;
 
     // 메시지 저장
-    public void saveMessage(Long chatRoomId, String sender, String message) {
+    public void saveMessage(Long chatRoomId, String message) {
         ChatRoom chatRoom = chatRoomRepository.findById(chatRoomId).orElseThrow(() -> new IllegalArgumentException("채팅방이 존재하지 않습니다."));
 
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setChatRoom(chatRoom);
-        chatMessage.setSender(sender);
         chatMessage.setMessage(message);
         chatMessage.setTimestamp(LocalDateTime.now());
 
@@ -39,7 +38,6 @@ public class ChatMessageService {
         return chatMessageRepository.findByChatRoom(chatRoom).stream().map(chatMessage -> {
             ChatMessageDto dto = new ChatMessageDto();
             dto.setId(chatMessage.getId());
-            dto.setSender(chatMessage.getSender());
             dto.setMessage(chatMessage.getMessage());
             dto.setTimestamp(chatMessage.getTimestamp());
             return dto;

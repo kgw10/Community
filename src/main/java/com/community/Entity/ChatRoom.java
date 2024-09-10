@@ -20,4 +20,5 @@ public class ChatRoom {
     private String creator;   // 채팅방 생성자 이름
 
     private String password;  // 비밀번호 (삭제 시 사용할 거)
+
 }

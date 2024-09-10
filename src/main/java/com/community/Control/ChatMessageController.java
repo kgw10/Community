@@ -17,8 +17,8 @@ public class ChatMessageController {
     private final ChatMessageService chatMessageService;
 
     @PostMapping("/{chatRoomId}/message")
-    public String sendMessage(@PathVariable Long chatRoomId, @RequestParam String sender, @RequestParam String message) {
-        chatMessageService.saveMessage(chatRoomId, sender, message);
+    public String sendMessage(@PathVariable Long chatRoomId, @RequestParam String message) {
+        chatMessageService.saveMessage(chatRoomId, message);
         return "redirect:/chatroom/" + chatRoomId;
     }
 

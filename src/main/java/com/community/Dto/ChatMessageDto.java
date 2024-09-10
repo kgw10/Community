@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Setter
 public class ChatMessageDto {
     private Long id;
-    private String sender;
     private String message;
     private LocalDateTime timestamp;
 }

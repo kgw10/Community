@@ -15,14 +15,13 @@
   <div>
     <ul>
       <li th:each="message : ${messages}">
-        <strong th:text="${message.sender}"></strong>: <span th:text="${message.message}"></span>
+        <strong th:text="'익명'"></strong> <span th:text="${message.message}"></span>
         <em th:text="${message.timestamp}"></em>
       </li>
     </ul>
   </div>
 
   <form action="/chatroom/${chatRoomId}/message" method="post">
-    <input type="text" name="sender" placeholder="이름" required>
     <input type="text" name="message" placeholder="메시지" required>
     <button type="submit">보내기</button>
   </form>
