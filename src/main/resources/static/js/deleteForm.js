@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // // 메세지 삭제
-    // var deleteMessage=document.getElementById('deleteMessage');
-    // if(deleteMessage){
-    //     deleteMessage.addEventListener('click', function (){
+    // 메세지 삭제
+    var deleteMessage=document.getElementById('deleteMessage');
+    if(deleteMessage){
+        deleteMessage.addEventListener('click', function (){
+
+        });
+    }
+
     //
-    //     });
-    // }
+
     // 채팅방 삭제 버튼 클릭 시 비밀번호 입력 폼 표시
     var showDeleteFormButton = document.getElementById('showDeleteFormButton');
     if (showDeleteFormButton) {

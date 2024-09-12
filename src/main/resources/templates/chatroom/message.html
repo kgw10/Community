@@ -3,36 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <title>채팅방</title>
-
   <link rel="stylesheet" href="/css/chat.css">
-
-
 </head>
 <body>
 <div>
   <h1>채팅방</h1>
   <button id="goHomeButton" class="home-button">홈으로 가기</button>
-  <div>
-    <ul>
-      <li th:each="message : ${messages}">
-        <strong th:text="'익명'"></strong> <span th:text="${message.message}"></span>
-        <em th:text="${message.timestamp}"></em>
+  <div id="chatContainerWrapper">
+    <ul id="chatContainer">
+      <li th:each="message : ${messages}" id="chat">
+        <strong th:text="'익명'"> </strong>
+        <span th:text="${message.message}"></span>
+        <div>
+          <em th:text="${message.timestamp}"></em>
+          <i class="bi bi-x"></i>
+        </div>
       </li>
     </ul>
   </div>
 
-  <form action="/chatroom/${chatRoomId}/message" method="post">
+  <form id="messageForm" action="/chatroom/${chatRoomId}/message" method="post">
     <input type="text" name="message" placeholder="메시지" required>
     <button type="submit">보내기</button>
   </form>
 </div>
+
+<!-- 자바스크립트를 HTML에 직접 포함 -->
+<script>
+  // 스크롤을 맨 아래로 이동시키는 함수
+  function scrollToBottom() {
+      const chatContainer = document.getElementById('chatContainer');
+      if (chatContainer) {
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+  }
+
+  // 페이지가 로드될 때 처음으로 스크롤을 맨 아래로 설정
+  window.onload = function() {
+      scrollToBottom();
+  }
+
+  // 메시지 전송 후 스크롤을 맨 아래로 설정
+  const messageForm = document.getElementById('messageForm');
+  if (messageForm) {
+      messageForm.addEventListener('submit', function(event) {
+          setTimeout(scrollToBottom, 10); // 메시지가 추가될 시간을 주기 위해 약간의 지연
+      });
+  }
+
+  // 홈 버튼 클릭 시 관리 페이지로 이동
+  const goHomeButton = document.getElementById('goHomeButton');
+  if (goHomeButton) {
+      goHomeButton.addEventListener('click', function() {
+          window.location.href = '/chatroom/manage';
+      });
+  }
+</script>
+
 </body>
 </html>
-
-<script>
-
-  document.getElementById('goHomeButton').addEventListener('click', function() {
-    window.location.href = '/chatroom/manage';
-  });
-
-</script>

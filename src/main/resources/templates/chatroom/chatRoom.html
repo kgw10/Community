@@ -28,7 +28,7 @@
 <!-- 채팅치기 -->
 <form id="messageForm" th:action="@{/chatroom/{chatRoomId}/message(chatRoomId=${chatRoomId})}" method="post">
   <span class="input-container">
-    <input type="text" name="message" placeholder="메시지를 입력하세요" required>
+    <input type="text" name="message" placeholder="메시지를 입력하세요">
     <button type="submit"><i class="bi bi-send"></i></button>
   </span>
 </form>
