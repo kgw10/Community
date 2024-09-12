@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -18,6 +20,9 @@ public class ChatMessage {
     private String sender;      // 메시지를 보낸 사람
     private String message;     // 메시지 내용
     private LocalDateTime timestamp; // 메시지가 작성된 시간
+
+
+
 
     @ManyToOne
     @JoinColumn(name = "chat_room_id")

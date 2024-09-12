@@ -5,6 +5,7 @@
   <title>채팅방</title>
   <link rel="stylesheet" href="/css/chat.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 <!-- JavaScript 파일 연결 -->
@@ -13,18 +14,24 @@
 <script src="/js/navigation.js"></script>
 
 <ul>
-  <li th:each="message : ${messages}">
-    <strong th:text="'익명'"> </strong> <span th:text="${message.message}"></span>
-    <em th:text="${message.timestamp}"></em>
+  <li th:each="message : ${messages}" id="chat">
+    <strong th:text="'익명'"> </strong>
+    <span th:text="${message.message}"></span>
+    <div>
+      <em th:text="${message.timestamp}"></em>
+      <i class="bi bi-x"></i>
+    </div>
+
   </li>
 </ul>
 
 <!-- 채팅치기 -->
-<form th:action="@{/chatroom/{chatRoomId}/message(chatRoomId=${chatRoomId})}" method="post">
-  <input type="text" name="message" placeholder="메세지를 입력하세요" required>
-  <button type="submit">보내기</button>
+<form id="messageForm" th:action="@{/chatroom/{chatRoomId}/message(chatRoomId=${chatRoomId})}" method="post">
+  <span class="input-container">
+    <input type="text" name="message" placeholder="메시지를 입력하세요" required>
+    <button type="submit"><i class="bi bi-send"></i></button>
+  </span>
 </form>
-
 
 <!-- 채팅방 삭제 버튼 -->
 <button id="showDeleteFormButton"><i class="bi bi-trash"></i></button>
@@ -32,12 +39,19 @@
 <button id="goHomeButton" class="home-button"><i class="bi bi-house-door"></i></button>
 
 <form th:action="@{/chatroom/delete/{id}(id=${chatRoomId})}" method="post" id="deleteForm" style="display:none;">
+
   <label for="deletePassword">비밀번호:</label>
+
   <input type="password" id="deletePassword" name="password" placeholder="비밀번호를 입력하세요" required>
+
   <button type="submit">삭제</button>
+
   <button type="button" id="cancelDelete">취소</button>
+
   <div id="errorMessage" style="color: red; display: none;">
+
     <p>비밀번호가 틀렸습니다. 다시 입력해 주세요.</p>
+
   </div>
 </form>
 
