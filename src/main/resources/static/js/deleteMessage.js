@@ -1,32 +1,24 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.delete-message').forEach(function(icon) {
-        icon.addEventListener('click', function() {
-            var chatRoomId = document.getElementById('chatRoomId').value; // Hidden input에서 값 읽기
-            var messageId = this.getAttribute('data-message-id'); // 클릭된 아이콘에서 메시지 ID 가져오기
-            var url = `/chatroom/${chatRoomId}/message/${messageId}/delete`;
+$(document).ready(function() {
+    $('.delete-message').click(function() {
+        var chatRoomId = $('#chatRoomId').val();
+        var messageId = $(this).data('message-id');
+        var url = `/chatroom/${chatRoomId}/message/${messageId}/delete`;
 
-            if (confirm('이 메시지를 삭제하시겠습니까?')) {
-                fetch(url, {
-                    method: 'DELETE',
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`네트워크 응답이 정상이 아닙니다. 상태 코드: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('성공:', data);
-                    // 성공적으로 삭제된 후 UI 업데이트
-                    var messageElement = document.getElementById(`message-${messageId}`);
-                    if (messageElement) {
+        if (confirm('이 메시지를 삭제하시겠습니까?')) {
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function(result) {
+                    console.log('성공:', result);
+                    var messageElement = $(`#message-${messageId}`);
+                    if (messageElement.length) {
                         messageElement.remove();
                     }
-                })
-                .catch((error) => {
-                    console.error('실패:', error);
-                });
-            }
-        });
+                },
+                error: function(jqXHR) {
+                    console.error('실패:', jqXHR.responseText);
+                }
+            });
+        }
     });
 });
