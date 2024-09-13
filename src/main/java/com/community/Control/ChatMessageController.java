@@ -60,14 +60,13 @@ public class ChatMessageController {
         }
     }
 
-    @GetMapping("/message/{id}")
+    @GetMapping("/chatmessages/{id}")
     @ResponseBody
     public ResponseEntity<ChatMessage> getMessage(@PathVariable Long id) {
         ChatMessage message = chatMessageService.getMessageById(id);
         if (message != null) {
             return ResponseEntity.ok(message);
         } else {
-            System.out.println("Message with ID " + id + " not found");
             return ResponseEntity.notFound().build();
         }
     }
