@@ -7,9 +7,11 @@ import com.community.Repository.ChatMessageRepository;
 import com.community.Repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,9 +21,9 @@ public class ChatMessageService {
     private final ChatMessageRepository chatMessageRepository;
     private final ChatRoomRepository chatRoomRepository;
 
-    // 메시지 저장
     public void saveMessage(Long chatRoomId, String message) {
-        ChatRoom chatRoom = chatRoomRepository.findById(chatRoomId).orElseThrow(() -> new IllegalArgumentException("채팅방이 존재하지 않습니다."));
+        ChatRoom chatRoom = chatRoomRepository.findById(chatRoomId)
+                .orElseThrow(() -> new IllegalArgumentException("채팅방이 존재하지 않습니다."));
 
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setChatRoom(chatRoom);
@@ -31,9 +33,9 @@ public class ChatMessageService {
         chatMessageRepository.save(chatMessage);
     }
 
-    // 채팅방의 메시지 목록 불러오기
     public List<ChatMessageDto> getMessages(Long chatRoomId) {
-        ChatRoom chatRoom = chatRoomRepository.findById(chatRoomId).orElseThrow(() -> new IllegalArgumentException("채팅방이 존재하지 않습니다."));
+        ChatRoom chatRoom = chatRoomRepository.findById(chatRoomId)
+                .orElseThrow(() -> new IllegalArgumentException("채팅방이 존재하지 않습니다."));
 
         return chatMessageRepository.findByChatRoom(chatRoom).stream().map(chatMessage -> {
             ChatMessageDto dto = new ChatMessageDto();
@@ -42,5 +44,22 @@ public class ChatMessageService {
             dto.setTimestamp(chatMessage.getTimestamp());
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    public void deleteMessage(Long chatRoomId, Long messageId) {
+        ChatMessage message = chatMessageRepository.findById(messageId)
+                .orElseThrow(() -> new RuntimeException("Message not found"));
+
+        if (!message.getChatRoom().getId().equals(chatRoomId)) {
+            throw new RuntimeException("Message does not belong to this chat room");
+        }
+
+        chatMessageRepository.deleteById(messageId);
+    }
+
+    @Transactional(readOnly = true)
+    public ChatMessage getMessageById(Long messageId) {
+        return chatMessageRepository.findByIdCustom(messageId)
+                .orElseThrow(() -> new RuntimeException("Message not found"));
     }
 }

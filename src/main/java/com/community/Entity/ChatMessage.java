@@ -16,8 +16,6 @@ public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String sender;      // 메시지를 보낸 사람
     private String message;     // 메시지 내용
     private LocalDateTime timestamp; // 메시지가 작성된 시간
 

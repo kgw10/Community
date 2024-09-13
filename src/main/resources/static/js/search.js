@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function updatePagination(items) {
         totalPages = Math.ceil(items.length / itemsPerPage);
         var pagination = document.getElementById('pagination');
+
+        if (!pagination) {
+            console.error('Pagination 요소가 없습니다.');
+            return;
+        }
+
         pagination.innerHTML = '';
 
         if (totalPages > 1) {

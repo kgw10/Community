@@ -12,18 +12,24 @@
 <script src="/js/search.js"></script>
 <script src="/js/deleteForm.js"></script>
 <script src="/js/navigation.js"></script>
+<script src="/js/deleteMessage.js"></script>
 
-<ul>
-  <li th:each="message : ${messages}" id="chat">
+<!-- 숨겨진 채팅방 ID 입력 필드 추가 -->
+<input type="hidden" id="chatRoomId" value="${chatRoomId}">
+
+<ul id="chatroom-list">
+  <li th:each="message : ${messages}" id="message-{message.id}">
     <strong th:text="'익명'"> </strong>
     <span th:text="${message.message}"></span>
     <div>
       <em th:text="${message.timestamp}"></em>
-      <i class="bi bi-x"></i>
+      <i class="bi bi-x delete-message" data-message-id="${message.id}"></i>
     </div>
-
   </li>
 </ul>
+
+<!-- 페이지네이션 추가 -->
+<div id="pagination"></div>
 
 <!-- 채팅치기 -->
 <form id="messageForm" th:action="@{/chatroom/{chatRoomId}/message(chatRoomId=${chatRoomId})}" method="post">
@@ -39,24 +45,14 @@
 <button id="goHomeButton" class="home-button"><i class="bi bi-house-door"></i></button>
 
 <form th:action="@{/chatroom/delete/{id}(id=${chatRoomId})}" method="post" id="deleteForm" style="display:none;">
-
   <label for="deletePassword">비밀번호:</label>
-
   <input type="password" id="deletePassword" name="password" placeholder="비밀번호를 입력하세요" required>
-
   <button type="submit">삭제</button>
-
   <button type="button" id="cancelDelete">취소</button>
-
   <div id="errorMessage" style="color: red; display: none;">
-
     <p>비밀번호가 틀렸습니다. 다시 입력해 주세요.</p>
-
   </div>
 </form>
-
-
-
 
 </body>
 </html>

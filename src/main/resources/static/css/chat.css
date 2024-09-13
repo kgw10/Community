@@ -325,3 +325,11 @@ ul li strong {
 #nameRegistrationForm button:hover {
     background-color: #0056b3;
 }
+.delete-message {
+    cursor: pointer;
+    color: red; /* 삭제 아이콘 색상 설정 */
+    font-size: 1.2rem; /* 아이콘 크기 조정 */
+}
+.delete-message:hover {
+    color: darkred; /* 호버 시 색상 변경 */
+}
