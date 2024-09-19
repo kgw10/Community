@@ -13,13 +13,5 @@ public class ChatMessageDto {
     private LocalDateTime timestamp;
 
 
-    public void sendMessage(String messageContent, String currentUser, Long chatRoomId) {
-        ChatMessageDto message = new ChatMessageDto();
-        message.setMessage(messageContent);
-        message.setSender(currentUser); // 여기서 currentUser가 올바른지 확인
-        message.setTimestamp(LocalDateTime.now());
 
-        // 메시지를 저장하는 로직 (예: DB에 저장)
-        // 저장 후 메시지를 가져오는 로직도 필요할 수 있음
-    }
 }

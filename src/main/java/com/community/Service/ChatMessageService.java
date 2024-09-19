@@ -62,4 +62,6 @@ public class ChatMessageService {
         return chatMessageRepository.findByIdCustom(messageId)
                 .orElseThrow(() -> new RuntimeException("Message not found"));
     }
+
+
 }
