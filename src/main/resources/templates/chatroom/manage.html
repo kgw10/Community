@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -16,7 +17,7 @@
     <h1>채팅방 검색</h1>
     <!-- 검색 기능 -->
     <form action="/chatroom/search" method="get" id="searchForm">
-      <input type="text" name="keyword" placeholder="검색어를 입력하세요" id="search-query" style="width:378px;">
+      <input type="text" name="keyword" placeholder="검색어를 입력하세요" required id="search-query" style="width:378px;">
       <button type="submit">검색</button>
     </form>
 
@@ -29,9 +30,10 @@
       </li>
     </ul>
 
-    <!-- 페이지네이션 -->
+    <!-- 페이지네이션 요소 추가 -->
     <div id="pagination"></div>
   </div>
+
 </div>
 
 <!-- JavaScript 파일 연결 -->

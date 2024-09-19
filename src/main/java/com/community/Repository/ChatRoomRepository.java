@@ -1,3 +1,4 @@
+
 package com.community.Repository;
 
 import com.community.Entity.ChatRoom;
@@ -9,6 +10,4 @@ import java.util.List;
 @Repository
 public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
     List<ChatRoom> findByTitleContainingIgnoreCase(String title);
-
-
 }

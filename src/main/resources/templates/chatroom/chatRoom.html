@@ -9,17 +9,18 @@
 </head>
 <body>
 <!-- JavaScript 파일 연결 -->
-<script src="/js/search.js"></script>
 <script src="/js/deleteForm.js"></script>
 <script src="/js/navigation.js"></script>
 <script src="/js/deleteMessage.js"></script>
 
 <!-- 숨겨진 채팅방 ID 입력 필드 추가 -->
-<input type="hidden" id="chatRoomId" value="${chatRoomId}">
+<input type="hidden" id="chatRoomId" value="${chatRoom.id}">
 
 <ul id="chatroom-list">
-  <li th:each="message : ${messages}" id="message-{message.id}">
-    <strong th:text="'익명'"> </strong>
+  <li th:each="message : ${messages}"
+      th:class="${message.sender == currentUser ? 'my-message' : 'other-message'}"
+      id="message-{message.id}">
+    <strong>익명</strong>
     <span th:text="${message.message}"></span>
     <div>
       <em th:text="${message.timestamp}"></em>
@@ -28,23 +29,23 @@
   </li>
 </ul>
 
-<!-- 페이지네이션 추가 -->
-<div id="pagination"></div>
-
 <!-- 채팅치기 -->
-<form id="messageForm" th:action="@{/chatroom/{chatRoomId}/message(chatRoomId=${chatRoomId})}" method="post">
+<form id="messageForm" th:action="@{/chatroom/{chatRoomId}/message(chatRoomId=${chatRoom.id})}" method="post">
   <span class="input-container">
     <input type="text" name="message" placeholder="메시지를 입력하세요">
     <button type="submit"><i class="bi bi-send"></i></button>
   </span>
 </form>
 
-<!-- 채팅방 삭제 버튼 -->
-<button id="showDeleteFormButton"><i class="bi bi-trash"></i></button>
+<!-- 채팅방 삭제 버튼 (채팅방 소유자만 보이게) -->
+<div th:if="${currentUser == chatRoom.creator}">
+  <button id="showDeleteFormButton"><i class="bi bi-trash"></i></button>
+</div>
+
 <!-- 홈 버튼 -->
 <button id="goHomeButton" class="home-button"><i class="bi bi-house-door"></i></button>
 
-<form th:action="@{/chatroom/delete/{id}(id=${chatRoomId})}" method="post" id="deleteForm" style="display:none;">
+<form th:action="@{/chatroom/delete/{id}(id=${chatRoom.id})}" method="post" id="deleteForm" style="display:none;">
   <label for="deletePassword">비밀번호:</label>
   <input type="password" id="deletePassword" name="password" placeholder="비밀번호를 입력하세요" required>
   <button type="submit">삭제</button>
@@ -56,3 +57,5 @@
 
 </body>
 </html>
+
+

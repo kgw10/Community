@@ -23,12 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updatePagination(items) {
         totalPages = Math.ceil(items.length / itemsPerPage);
         var pagination = document.getElementById('pagination');
-
-        if (!pagination) {
-            console.error('Pagination 요소가 없습니다.');
-            return;
-        }
-
         pagination.innerHTML = '';
 
         if (totalPages > 1) {
@@ -74,6 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         updatePagination(items);
+
+        // li 요소 클릭 시 채팅방으로 이동
+        items.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var link = item.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+            });
+        });
     }
 
     // 초기 렌더링

@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     // 홈 버튼 클릭 시 홈 페이지로 이동
     var goHomeButton = document.getElementById('goHomeButton');

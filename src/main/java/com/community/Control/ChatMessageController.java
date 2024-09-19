@@ -35,10 +35,10 @@ public class ChatMessageController {
     public String getMessages(@PathVariable Long chatRoomId, Model model) {
         List<ChatMessageDto> messages = chatMessageService.getMessages(chatRoomId);
         model.addAttribute("messages", messages);
-        return "chatroom/messages";
+        return "chatroom/messages"; // 채팅 메시지 리스트 페이지 템플릿
     }
 
-    @GetMapping("/{chatRoomId}")
+    @GetMapping("/{chatRoomId}/view")
     public String chatRoom(@PathVariable Long chatRoomId, Model model) {
         List<ChatMessageDto> messages = chatMessageService.getMessages(chatRoomId);
         model.addAttribute("messages", messages);

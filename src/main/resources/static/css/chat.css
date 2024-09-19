@@ -16,7 +16,7 @@ body {
     padding: 10px 20px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    background-color: #007bff;
+    background-color: #34b534;
     color: white;
     cursor: pointer;
     text-align: center;
@@ -24,7 +24,7 @@ body {
 }
 
 #createRoomBtn:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 /* 검색 창 스타일 */
@@ -36,14 +36,14 @@ body {
 
 #search-query {
     padding: 10px;
-    width: 300px;
+    width: 280px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 #searchForm button {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #34b534;
     color: white;
     border: none;
     border-radius: 4px;
@@ -52,7 +52,7 @@ body {
 }
 
 #searchForm button:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 /* 헤더 스타일 */
@@ -90,7 +90,7 @@ form input {
 }
 
 form button {
-    background-color: #007bff;
+    background-color: #34b534;
     color: white;
     border: none;
     cursor: pointer;
@@ -98,7 +98,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 /* 채팅방 목록 스타일 */
@@ -112,26 +112,20 @@ form button:hover {
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
-    margin: 10px 0;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 변경 효과 추가 */
-}
-
-#chatroom-list li a {
-    text-decoration: none;
-    color: #007bff;
-    display: block; /* 전체 li 영역 클릭 가능하도록 설정 */
+    width:300px; !important;
+    left:100px;
 }
 
 /* 마우스 오버 시 li 스타일 변경 */
 #chatroom-list li:hover {
-    background-color: #007bff;
+    background-color: #34b534;
     color: #fff;
 }
-
-#chatroom-list li:hover a {
-    color: #fff;
+#chatroom-list li:hover strong{
+    color: #0b510b;
 }
 
 /* 채팅 메시지 리스트 스타일 */
@@ -151,7 +145,7 @@ ul li {
 }
 
 ul li strong {
-    color: #007bff;
+    color: #34b534;
 }
 /* 메시지 폼 스타일 */
 #messageForm {
@@ -186,7 +180,7 @@ ul li strong {
 
 .input-container button {
     padding: 8px 12px; /* 버튼의 여백을 줄입니다 */
-    background-color: #007bff;
+    background-color: #34b534;
     color: white;
     border: none;
     border-radius: 4px;
@@ -201,7 +195,7 @@ ul li strong {
 }
 
 .input-container button:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 /* 홈 버튼 스타일 */
@@ -209,9 +203,9 @@ ul li strong {
     position: fixed;
     top: 20px;
     right: 20px;
-    border: 1px solid #007bff;
+    border: 1px solid #34b534;
     border-radius: 3px;
-    background-color: #007bff;
+    background-color: #34b534;
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -220,7 +214,7 @@ ul li strong {
 }
 
 #goHomeButton:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 /* 채팅방 삭제 버튼 스타일 */
@@ -231,12 +225,12 @@ ul li strong {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 4px;
-    border: 1px solid #007bff;
+    border: 1px solid #34b534;
     cursor: pointer;
     color: white;
     text-align: center;
     text-decoration: none;
-    background-color: #007bff;
+    background-color: #34b534;
     z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
 }
 
@@ -261,7 +255,7 @@ ul li strong {
 #pagination button {
     padding: 5px 10px;
     margin: 0 5px;
-    background-color: #007bff;
+    background-color: #34b534;
     color: white;
     border: none;
     border-radius: 4px;
@@ -279,7 +273,7 @@ ul li strong {
 }
 
 .bi-x {
-    color: #007bff;
+    color: #34b534;
     left: 150px;
 }
 
@@ -314,7 +308,7 @@ ul li strong {
 
 #nameRegistrationForm button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #34b534;
     color: white;
     border: none;
     border-radius: 4px;
@@ -323,7 +317,7 @@ ul li strong {
 }
 
 #nameRegistrationForm button:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 .delete-message {
     cursor: pointer;
@@ -332,4 +326,14 @@ ul li strong {
 }
 .delete-message:hover {
     color: darkred; /* 호버 시 색상 변경 */
+}
+
+.my-message {
+    text-align: right; /* 오른쪽 정렬 */
+    background-color: #d1e7dd; /* 사용자 메시지 배경색 */
+}
+
+.other-message {
+    text-align: left; /* 왼쪽 정렬 */
+    background-color: #f8d7da; /* 다른 사용자 메시지 배경색 */
 }
