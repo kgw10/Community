@@ -327,13 +327,3 @@ ul li strong {
 .delete-message:hover {
     color: darkred; /* 호버 시 색상 변경 */
 }
-
-.my-message {
-    text-align: right; /* 오른쪽 정렬 */
-    background-color: #d1e7dd; /* 사용자 메시지 배경색 */
-}
-
-.other-message {
-    text-align: left; /* 왼쪽 정렬 */
-    background-color: #f8d7da; /* 다른 사용자 메시지 배경색 */
-}

@@ -17,13 +17,11 @@
 <input type="hidden" id="chatRoomId" value="${chatRoom.id}">
 
 <ul id="chatroom-list">
-  <li th:each="message : ${messages}"
-      th:class="${message.sender == currentUser ? 'my-message' : 'other-message'}"
-      id="message-{message.id}">
-    <strong>익명</strong>
+  <li th:each="message : ${messages}" id="message-{message.id}">
+    <strong th:text="'익명'"></strong>
     <span th:text="${message.message}"></span>
     <div>
-      <em th:text="${message.timestamp}"></em>
+      <em class="timestamp" th:text="${message.timestamp}"></em>
       <i class="bi bi-x delete-message" data-message-id="${message.id}"></i>
     </div>
   </li>
@@ -32,7 +30,6 @@
 <!-- 채팅치기 -->
 <form id="messageForm" th:action="@{/chatroom/{chatRoomId}/message(chatRoomId=${chatRoom.id})}" method="post">
   <span class="input-container">
-    <input type="hidden" name="currentUser" value="${currentUser}"> <!-- 현재 사용자 이름 추가 -->
     <input type="text" name="message" placeholder="메시지를 입력하세요">
     <button type="submit"><i class="bi bi-send"></i></button>
   </span>
@@ -59,4 +56,11 @@
 </body>
 </html>
 
-
+<script>
+  document.querySelectorAll('.timestamp').forEach(el => {
+    const timestamp = el.textContent; // timestamp를 가져옵니다
+    // 필요한 포맷으로 변환합니다 (예: '2024-09-20 14:30:00' -> '14:30')
+    const formattedTime = new Date(timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    el.textContent = formattedTime; // 변환된 시간을 출력합니다
+  });
+</script>
