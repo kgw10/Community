@@ -17,12 +17,12 @@
 <input type="hidden" id="chatRoomId" value="${chatRoom.id}">
 
 <ul id="chatroom-list">
-  <li th:each="message : ${messages}" id="message-{message.id}">
-    <strong th:text="'익명'"></strong>
+  <li th:each="message : ${messages}">
+    <strong>익명</strong>
     <span th:text="${message.message}"></span>
     <div>
       <em class="timestamp" th:text="${message.timestamp}"></em>
-      <i class="bi bi-x delete-message" data-message-id="${message.id}"></i>
+      <i class="bi bi-x delete-message"></i>
     </div>
   </li>
 </ul>
